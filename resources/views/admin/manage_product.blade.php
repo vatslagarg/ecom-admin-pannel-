@@ -46,6 +46,7 @@
         Back
     </button>
 </a>
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <div class="row m-t-30">
     <div class="col-md-12">
         <form action="{{route('product.manage_product_process')}}" method="post" enctype="multipart/form-data">
@@ -89,6 +90,10 @@
                                     {{$message}}
                                 </div>
                                 @enderror
+                                @if($image!='')
+                                <a href="{{asset('storage/media/'.$image)}}" target="_blank">
+                                    <img width="100px" src="{{asset('storage/media/'.$image)}}" /></a>
+                                @endif
                             </div>
 
                             <div class="form-group">
@@ -164,8 +169,82 @@
                                 <label for="warranty" class="control-label mb-1">Warranty</label>
                                 <textarea id="warranty" name="warranty" type="text" class="form-control" aria-required="true" aria-invalid="false" required>{{$warranty}}</textarea>
                             </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <label for="model" class="control-label mb-1"> Lead Time</label>
+                                        <input id="lead_time" value="{{$lead_time}}" name="lead_time" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="model" class="control-label mb-1"> Tax</label>
+                                        <select id="tax_id" name="tax_id" class="form-control" required>
+                                            <option value="">Select Tax</option>
+                                            @foreach($taxs as $list)
+                                            @if($tax_id==$list->id)
+                                            <option selected value="{{$list->id}}">
+                                                @else
+                                            <option value="{{$list->id}}">
+                                                @endif
+                                                {{$list->tax_desc}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="model" class="control-label mb-1"> IS Promo </label>
+                                        <select id="is_promo" name="is_promo" class="form-control" required>
+                                            @if($is_promo=='1')
+                                            <option value="1" selected>Yes</option>
+                                            <option value="0">No</option>
+                                            @else
+                                            <option value="1">Yes</option>
+                                            <option value="0" selected>No</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="model" class="control-label mb-1"> IS Featured </label>
+                                        <select id="is_featured" name="is_featured" class="form-control" required>
+                                            @if($is_featured=='1')
+                                            <option value="1" selected>Yes</option>
+                                            <option value="0">No</option>
+                                            @else
+                                            <option value="1">Yes</option>
+                                            <option value="0" selected>No</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="model" class="control-label mb-1"> IS Tranding </label>
+                                        <select id="is_tranding" name="is_tranding" class="form-control" required>
+                                            @if($is_tranding=='1')
+                                            <option value="1" selected>Yes</option>
+                                            <option value="0">No</option>
+                                            @else
+                                            <option value="1">Yes</option>
+                                            <option value="0" selected>No</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="model" class="control-label mb-1"> IS Discounted </label>
+                                        <select id="is_discounted" name="is_discounted" class="form-control" required>
+                                            @if($is_discounted=='1')
+                                            <option value="1" selected>Yes</option>
+                                            <option value="0">No</option>
+                                            @else
+                                            <option value="1">Yes</option>
+                                            <option value="0" selected>No</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -194,7 +273,7 @@
                                     <input id="piid" type="hidden" name="piid[]" value="{{$pIArr['id']}}">
                                     <div class="col-md-4 product_images_{{$loop_count_num++}}">
                                         <label for="images" class="control-label mb-1"> Image</label>
-                                        <input id="images" name="images[]" type="file" class="form-control" aria-required="true" aria-invalid="false" required>
+                                        <input id="images" name="images[]" type="file" class="form-control" aria-required="true" aria-invalid="false">
                                         @if($pIArr['images']!='')
                                         <a href="{{asset('storage/media/'.$pIArr['images'])}}" target="_blank">
                                             <img width="100px" src="{{asset('storage/media/'.$pIArr['images'])}}" /></a>
@@ -306,7 +385,7 @@
 
                                     <div class="col-md-4">
                                         <label for="attr_image" class="control-label mb-1"> Image</label>
-                                        <input id="attr_image" name="attr_image[]" type="file" class="form-control" aria-required="true" aria-invalid="false" required>
+                                        <input id="attr_image" name="attr_image[]" type="file" class="form-control" aria-required="true" aria-invalid="false">
                                         @if($pAArr['attr_image']!='')
                                         <img width="100px" src="{{asset('storage/media/'.$pAArr['attr_image'])}}" /></td>
                                         @endif
@@ -385,6 +464,9 @@
     function remove_image_more(loop_image_count) {
         jQuery('.product_images_' + loop_image_count).remove();
     }
+    CKEDITOR.replace('short_desc');
+    CKEDITOR.replace('desc');
+    CKEDITOR.replace('technical_specification');
 
 </script>
 

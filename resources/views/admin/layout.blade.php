@@ -55,15 +55,28 @@
 
                         <li>
                             <a href="{{url('admin/brand')}}">
-                                <i class="fab fa-product-hunt"></i>Brand</a>
+                                <i class="fa fa-bold"></i>Brand</a>
                         </li>
                         <li>
                             <a href="{{url('admin/color')}}">
                                 <i class="fas fa-tint"></i>Color</a>
                         </li>
                         <li>
+                            <a href="{{url('admin/tax')}}">
+                                <i class="fas fa-percent"></i>Tax</a>
+                        </li>
+                        <li>
                             <a href="{{url('admin/product')}}">
                                 <i class="fab fa-product-hunt"></i>Product</a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('admin/customer')}}">
+                                <i class="fa fa-user"></i>Customer</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/home_banner')}}">
+                                <i class="fas fa-images"></i>Home Banner</a>
                         </li>
                     </ul>
                 </div>
@@ -100,15 +113,27 @@
                         </li>
                         <li class="@yield('brand_select')">
                             <a href="{{url('admin/brand')}}">
-                                <i class="fab fa-product-hunt"></i>Brand</a>
+                                <i class="fa fa-bold"></i>Brand</a>
                         </li>
                         <li class="@yield('color_select')">
                             <a href="{{url('admin/color')}}">
                                 <i class="fas fa-tint"></i>Color</a>
                         </li>
+                        <li class="@yield('tax_select')">
+                            <a href="{{url('admin/tax')}}">
+                                <i class="fas fa-percent"></i>Tax</a>
+                        </li>
                         <li class="@yield('product_select')">
                             <a href="{{url('admin/product')}}">
                                 <i class="fab fa-product-hunt"></i>Product</a>
+                        </li>
+                        <li class="@yield('customer_select')">
+                            <a href="{{url('admin/customer')}}">
+                                <i class="fa fa-user"></i>Customer</a>
+                        </li>
+                        <li class="@yield('home_banner_select')">
+                            <a href="{{url('admin/home_banner')}}">
+                                <i class="fas fa-images"></i>Home Banner</a>
                         </li>
                     </ul>
                 </nav>
